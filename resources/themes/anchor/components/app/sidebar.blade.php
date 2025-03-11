@@ -18,18 +18,20 @@
                 </button>
 
                 <div class="flex items-center px-5 gap-2">
-                    <a href="/" class="flex justify-center items-center py-4 ltr:pl-0.5 rtl:pr-0.5 gap-1 font-bold text-zinc-900">
+                    <a href="{{ url('/') }}" class="flex justify-center items-center py-4 ltr:pl-0.5 rtl:pr-0.5 gap-1 font-bold text-zinc-900">
                         <x-logo class="w-auto h-7" />
                     </a>
                 </div>
                 <div class="flex items-center px-4 pt-1 pb-3">
                     <div class="relative flex items-center w-full h-full rounded-lg">
                         <x-phosphor-magnifying-glass class="absolute ltr:left-0 rtl:right-0 w-5 h-5 ltr:ml-2 rtl:mr-2 text-gray-400 -translate-y-px" />
-                        <input type="text" class="w-full py-2 ltr:pl-8 rtl:pr-8 text-sm border rounded-lg bg-zinc-200/70 focus:bg-white duration-50 dark:bg-zinc-950 ease border-zinc-200 dark:border-zinc-700/70 dark:ring-zinc-700/70 focus:ring dark:text-zinc-200 dark:focus:ring-zinc-700/70 dark:focus:border-zinc-700 focus:ring-zinc-200 focus:border-zinc-300 dark:placeholder-zinc-400" placeholder="Search">
+                        <input type="text" class="w-full py-2 ltr:pl-8 rtl:pr-8 text-sm border rounded-lg bg-zinc-200/70 focus:bg-white duration-50 dark:bg-zinc-950 ease border-zinc-200 dark:border-zinc-700/70 dark:ring-zinc-700/70 focus:ring dark:text-zinc-200 dark:focus:ring-zinc-700/70 dark:focus:border-zinc-700 focus:ring-zinc-200 focus:border-zinc-300 dark:placeholder-zinc-400" placeholder="{{ trans('circlexo.dashboard.search') }}">
                     </div>
                 </div>
 
                 <div class="flex flex-col justify-start items-center px-4 space-y-1.5 w-full h-full text-slate-600 dark:text-zinc-400">
+                    <x-app.sidebar-link href="{{ url('/dashboard') }}" icon="phosphor-house" :active="Request::is('dashboard')">
+                        {{ trans('circlexo.dashboard.title') }}</x-app.sidebar-link>
                     @foreach(menu('dashboard') as $item)
                         <x-app.sidebar-link href="{{$item->is_route? route($item->route) : $item->url }}" icon="{{ $item->icon }}" :active="Request::is(str($item->url)->remove('/')->toString())">
                             {{ $item->title[app()->getLocale()] }}</x-app.sidebar-link>
@@ -38,20 +40,22 @@
             </div>
 
             <div class="relative px-2.5 space-y-1.5 text-zinc-700 dark:text-zinc-400">
+                @foreach(\TomatoPHP\FilamentTypes\Models\Type::query()->where('for', 'dashboard')->where('type','sidebar-menu')->get() as $key=>$feature)
+                    <x-app.sidebar-link href="{{ $feature->key }}" target="_blank" icon="{{ $feature->icon }}" active="false">
+                        {{ $feature->name }}</x-app.sidebar-link>
+                @endforeach
+                <x-app.sidebar-link :href="route('changelogs')" icon="phosphor-book-open-text-duotone" :active="Request::is('changelog') || Request::is('changelog/*')">
+                    {{ trans('circlexo.changelog.title') }}</x-app.sidebar-link>
 
-                <x-app.sidebar-link href="https://docs.3x1.io/circlexo" target="_blank" icon="phosphor-book-bookmark-duotone" active="false">Documentation</x-app.sidebar-link>
-                <x-app.sidebar-link href="https://github.com/orgs/circlexo/discussions" target="_blank" icon="phosphor-chat-duotone" active="false">Questions</x-app.sidebar-link>
-                <x-app.sidebar-link :href="route('changelogs')" icon="phosphor-book-open-text-duotone" :active="Request::is('changelog') || Request::is('changelog/*')">Changelog</x-app.sidebar-link>
-
-                <div x-show="sidebarTip" x-data="{ sidebarTip: $persist(true) }" class="px-1 py-3" x-collapse x-cloak>
-                    <div class="relative w-full px-4 py-3 space-y-1 border rounded-lg bg-zinc-50 text-zinc-700 dark:text-zinc-100 dark:bg-zinc-800 border-zinc-200/60 dark:border-zinc-700">
-                        <button @click="sidebarTip=false" class="absolute top-0 right-0 z-50 p-1.5 mt-2.5 ltr:mr-2.5 rtl:ml-2.5 rounded-full opacity-80 cursor-pointer hover:opacity-100 hover:bg-zinc-100 hover:dark:bg-zinc-700 hover:dark:text-zinc-300 text-zinc-500 dark:text-zinc-400">
-                            <x-phosphor-x-bold class="w-3 h-3" />
-                        </button>
-                        <h5 class="pb-1 text-sm font-bold -translate-y-0.5">Edit This Section</h5>
-                        <p class="block pb-1 text-xs opacity-80 text-balance">You can edit any aspect of your user dashboard. This section can be found inside your theme component/app/sidebar file.</p>
-                    </div>
-                </div>
+{{--                <div x-show="sidebarTip" x-data="{ sidebarTip: $persist(true) }" class="px-1 py-3" x-collapse x-cloak>--}}
+{{--                    <div class="relative w-full px-4 py-3 space-y-1 border rounded-lg bg-zinc-50 text-zinc-700 dark:text-zinc-100 dark:bg-zinc-800 border-zinc-200/60 dark:border-zinc-700">--}}
+{{--                        <button @click="sidebarTip=false" class="absolute top-0 right-0 z-50 p-1.5 mt-2.5 ltr:mr-2.5 rtl:ml-2.5 rounded-full opacity-80 cursor-pointer hover:opacity-100 hover:bg-zinc-100 hover:dark:bg-zinc-700 hover:dark:text-zinc-300 text-zinc-500 dark:text-zinc-400">--}}
+{{--                            <x-phosphor-x-bold class="w-3 h-3" />--}}
+{{--                        </button>--}}
+{{--                        <h5 class="pb-1 text-sm font-bold -translate-y-0.5">Edit This Section</h5>--}}
+{{--                        <p class="block pb-1 text-xs opacity-80 text-balance">You can edit any aspect of your user dashboard. This section can be found inside your theme component/app/sidebar file.</p>--}}
+{{--                    </div>--}}
+{{--                </div>--}}
             </div>
         </div>
     </div>

@@ -7,58 +7,34 @@
 <x-layouts.app>
 	<x-app.container x-data class="lg:gap-6" x-cloak>
 
-		<x-app.alert id="dashboard_alert" class="hidden lg:flex">This is the user dashboard where users can manage settings and access features. <a href="https://devdojo.com/wave/docs" target="_blank" class="mx-1 underline">View the docs</a> to learn more.</x-app.alert>
+{{--		<x-app.alert id="dashboard_alert" class="hidden lg:flex">This is the user dashboard where users can manage settings and access features. <a href="https://devdojo.com/wave/docs" target="_blank" class="mx-1 underline">View the docs</a> to learn more.</x-app.alert>--}}
 
         <x-app.heading
-                title="Dashboard"
-                description="Welcome to an example application dashboard. Find more resources below."
+                title="{{ trans('circlexo.dashboard.title') }}"
+                description="{{ trans('circlexo.dashboard.description') }}"
                 :border="false"
             />
 
-        <div class="flex flex-col w-full mt-6 gap-5 md:flex-row md:gap-5">
-            <x-app.dashboard-card
-				href="https://devdojo.com/wave/docs"
-				target="_blank"
-				title="Documentation"
-				description="Learn how to customize your app and make it shine!"
-				link_text="View The Docs"
-				image="/wave/img/docs.png"
-			/>
-			<x-app.dashboard-card
-				href="https://devdojo.com/questions"
-				target="_blank"
-				title="Ask The Community"
-				description="Share your progress and get help from other builders."
-				link_text="Ask a Question"
-				image="/wave/img/community.png"
-			/>
+        <div class="grid grid-cols-1 w-full mt-6 gap-5 md:grid-cols-2 md:gap-3">
+            @foreach(\TomatoPHP\FilamentTypes\Models\Type::query()->where('for', 'dashboard')->where('type','widget')->get() as $key=>$feature)
+                <x-app.dashboard-card
+                    href="{{ $feature->key }}"
+                    target="_blank"
+                    title="{{ str($feature->name)->replace('$NAME', auth('accounts')->user()->name) }}"
+                    description="{{ str($feature->description)->replace('$NAME', auth('accounts')->user()->name) }}"
+                    link_text="{{ trans('circlexo.dashboard.link') }}"
+                    image="{{ $feature->getFirstMediaUrl('image') }}"
+                    icon="{{ $feature->icon }}"
+                />
+            @endforeach
         </div>
-
-		<div class="flex flex-col w-full mt-5 gap-5 md:flex-row md:gap-0 md:mb-0 md:gap-5">
-			<x-app.dashboard-card
-				href="https://github.com/thedevdojo/wave"
-				target="_blank"
-				title="Github Repo"
-				description="View the source code and submit a Pull Request"
-				link_text="View on Github"
-				image="/wave/img/laptop.png"
-			/>
-			<x-app.dashboard-card
-				href="https://devdojo.com"
-				target="_blank"
-				title="Resources"
-				description="View resources that will help you build your SaaS"
-				link_text="View Resources"
-				image="/wave/img/globe.png"
-			/>
-		</div>
 
 		<div class="mt-5 gap-5">
 			@subscriber
-				<p>You are a subscribed user with the <strong>{{ auth()->user()->roles()->first()?->name }}</strong> role. Learn <a href="https://devdojo.com/wave/docs/features/roles-permissions" target="_blank" class="underline">more about roles</a> here.</p>
+				<p>You are a subscribed user with the <strong>{{ auth('accounts')->user()->roles()->first()?->name }}</strong> role.
 				<x-app.message-for-subscriber />
 			@else
-				<p>This current logged in user has a <strong>{{ auth()->user()->roles()->first()?->name }}</strong> role. To upgrade, <a href="{{ route('settings.subscription') }}" class="underline">subscribe to a plan</a>. Learn <a href="https://devdojo.com/wave/docs/features/roles-permissions" target="_blank" class="underline">more about roles</a> here.</p>
+				<p>This current logged in user has a <strong>{{ auth('accounts')->user()->roles()->first()?->name }}</strong> role. To upgrade, <a href="{{ route('settings.subscription') }}" class="underline">subscribe to a plan</a>.
 			@endsubscriber
 
 			@admin

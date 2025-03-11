@@ -31,25 +31,25 @@
             </div>
             <div class="w-full h-px my-2 bg-slate-100 dark:bg-zinc-700"></div>
             <div class="relative flex flex-col p-2 gap-1">
-                <x-app.sidebar-link :hideUntilGroupHover="false" href="{{ route('notifications') }}" icon="phosphor-bell-duotone" active="false">Notifications</x-app.sidebar-link>
-                <x-app.sidebar-link :hideUntilGroupHover="false" href="{{ '/profile/' . auth('accounts')->user()->username }}" icon="phosphor-planet-duotone" active="false">Public Profile</x-app.sidebar-link>
+                <x-app.sidebar-link :hideUntilGroupHover="false" href="{{ route('notifications') }}" icon="phosphor-bell-duotone" active="false">{{ trans('circlexo.dashboard.user-menu.notifications') }}</x-app.sidebar-link>
+{{--                <x-app.sidebar-link :hideUntilGroupHover="false" href="{{ '/profile/' . auth('accounts')->user()->username }}" icon="phosphor-planet-duotone" active="false">Public Profile</x-app.sidebar-link>--}}
                 {{-- @subscriber
                                 <x-app.sidebar-link href="{{ '/profile/' . auth('accounts')->user()->username }}" icon="phosphor-credit-card">Manage Subscription</x-app.sidebar-link>
                 @endsubscriber --}}
 
 
-                <x-app.sidebar-link :hideUntilGroupHover="false" href="{{ route('settings.profile') }}" icon="phosphor-gear-duotone" active="false">Settings</x-app.sidebar-link>
+                <x-app.sidebar-link :hideUntilGroupHover="false" href="{{ route('settings.profile') }}" icon="phosphor-gear-duotone" active="false">{{ trans('circlexo.dashboard.user-menu.settings') }}</x-app.sidebar-link>
                 @notsubscriber
-                <x-app.sidebar-link href="/settings/subscription" icon="phosphor-sparkle-duotone">Upgrade</x-app.sidebar-link>
+                <x-app.sidebar-link href="/settings/subscription" icon="phosphor-sparkle-duotone">{{ trans('circlexo.dashboard.user-menu.upgrade') }}</x-app.sidebar-link>
                 @endnotsubscriber
-                @if(auth('accounts')->user()->isAdmin())
-                <x-app.sidebar-link :hideUntilGroupHover="false" :ajax="false" href="/admin" icon="phosphor-crown-duotone" active="false">View Admin</x-app.sidebar-link>
+                @if(auth('web')->user()->isAdmin())
+                    <x-app.sidebar-link :hideUntilGroupHover="false" :ajax="false" href="/admin" icon="phosphor-crown-duotone" active="false">{{ trans('circlexo.dashboard.user-menu.admin') }}</x-app.sidebar-link>
                 @endif
                 <form method="POST" action="{{ route('logout') }}" class="w-full">
                     @csrf
                     <button onclick="event.preventDefault(); this.closest('form').submit();" class="relative w-full flex cursor-pointer hover:text-zinc-700 dark:hover:text-zinc-100 select-none hover:bg-zinc-200 dark:hover:bg-zinc-700/60 items-center rounded-lg p-2 text-sm outline-none transition-colors data-[disabled]:pointer-events-none data-[disabled]:opacity-50">
                         <x-phosphor-sign-out-duotone class="flex-shrink-0 w-auto h-5 ml-1 mr-2" />
-                        <span>Log out</span>
+                        <span>{{ trans('circlexo.dashboard.user-menu.logout') }}</span>
                     </button>
                 </form>
                 @impersonating

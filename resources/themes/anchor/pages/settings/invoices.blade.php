@@ -11,20 +11,20 @@
 <x-layouts.app>
         <div class="relative">
             <x-app.settings-layout
-                title="Invoices"
-                description="Your past plan invoices"
+                title="{{ trans('circlexo.settings.invoices.title') }}"
+                description="{{ trans('circlexo.settings.invoices.description') }}"
             >
                 @empty($invoices)
-                    <x-app.alert id="dashboard_alert">No invoices available.</x-app.alert>
-                    <p class="mt-3">You do not have any past invoices. When you subscribe to a plan you'll see your past invoices here.</p>
+                    <x-app.alert id="dashboard_alert">{{ trans('circlexo.settings.invoices.empty') }}</x-app.alert>
+                    <p class="mt-3">{{ trans('circlexo.settings.invoices.empty_description') }}</p>
                 @else
                     <div class="overflow-hidden border border-gray-200 rounded-lg">
                         <table class="min-w-full divide-y divide-zinc-200">
                             <thead>
                                 <tr>
-                                    <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-white text-zinc-500">Price</th>
-                                    <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-white text-zinc-500">Date of Invoice</th>
-                                    <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-right uppercase bg-white text-zinc-500">PDF Download</th>
+                                    <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-white text-zinc-500">{{ trans('circlexo.settings.invoices.price') }}</th>
+                                    <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-left uppercase bg-white text-zinc-500">{{ trans('circlexo.settings.invoices.date') }}</th>
+                                    <th class="px-6 py-3 text-xs font-medium leading-4 tracking-wider text-right uppercase bg-white text-zinc-500">{{ trans('circlexo.settings.invoices.download') }}</th>
                                 </tr>
                             </thead>
                             <tbody>

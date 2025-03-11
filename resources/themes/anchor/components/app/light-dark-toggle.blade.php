@@ -54,8 +54,8 @@
         :class="{ 'text-zinc-600' : theme == 'light' || theme == null, 'text-zinc-300' : theme == 'dark'  }"
         class="flex-shrink-0 ltr:ml-1.5 rtl:mr-1.5 font-medium cursor-pointer"
     >
-        <span x-show="(theme == 'light' || theme == null)">Dark Mode</span>
-        <span x-show="(theme == 'dark')">Light Mode</span>
+        <span x-show="(theme == 'light' || theme == null)">{{ trans('circlexo.dashboard.toggle.dark') }}</span>
+        <span x-show="(theme == 'dark')">{{ trans('circlexo.dashboard.toggle.light') }}</span>
     </label>
 
 </div>

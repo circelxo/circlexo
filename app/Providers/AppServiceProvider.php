@@ -6,6 +6,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\ServiceProvider;
 use TomatoPHP\FilamentTypes\Facades\FilamentTypes;
+use TomatoPHP\FilamentTypes\Services\Contracts\Type;
 use TomatoPHP\FilamentTypes\Services\Contracts\TypeFor;
 use TomatoPHP\FilamentTypes\Services\Contracts\TypeOf;
 
@@ -68,6 +69,34 @@ class AppServiceProvider extends ServiceProvider
                         ->label('Feature Section'),
                     TypeOf::make('testimonials-section')
                         ->label('Testimonials Section'),
+                ]),
+            TypeFor::make('dashboard')
+                ->label('Dashboard Sections')
+                ->types([
+                    TypeOf::make('widget')
+                        ->label('Dashboard Widgets'),
+                    TypeOf::make('sidebar-menu')
+                        ->label('Sidebar Menu')
+                        ->register([
+                            Type::make('https://docs.3x1.io/circlexo')
+                                ->name([
+                                    "ar" => "طريقة الاستخدام",
+                                    "en" => "Docs",
+                                ])
+                                ->icon('phosphor-book-bookmark-duotone'),
+                            Type::make('https://github.com/orgs/circlexo/discussions')
+                                ->name([
+                                    "ar" => "الأسئلة الشائعة",
+                                    "en" => "Questions",
+                                ])
+                                ->icon('phosphor-chat-duotone'),
+                            Type::make('https://github.com/orgs/circlexo/discussions')
+                                ->name([
+                                    "ar" => "الأسئلة الشائعة",
+                                    "en" => "Questions",
+                                ])
+                                ->icon('phosphor-chat-duotone'),
+                        ])
                 ]),
         ]);
     }

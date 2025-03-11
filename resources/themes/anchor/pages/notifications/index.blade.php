@@ -33,13 +33,12 @@
 			<x-card class="lg:p-10">
 
 				<x-elements.back-button
-					text="Back to Dashboard"
 					:href="route('dashboard')"
 				/>
 
 				<x-app.heading
-					title="Notifications"
-					description="View your current notifications"
+					title="{{ trans('circlexo.notifications.title') }}"
+					description="{{ trans('circlexo.notifications.description') }}"
 				/>
 
 				<div class="w-full">
@@ -69,8 +68,8 @@
 						</div>
 					@empty
 						<div class="@if($notifications_count > 0){{ 'hidden' }}@endif flex items-center bg-gray-100 mt-5 rounded-lg justify-center h-24 w-full text-gray-400">
-							<svg class="mr-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
-							No Notifications
+							<svg class="ltr:mr-2 rtl:ml-2 w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"></path></svg>
+                            {{ trans('circlexo.notifications.empty') }}
 						</div>
 					@endforelse
 				</div>

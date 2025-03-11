@@ -8,16 +8,20 @@
     $layout = ((auth()->guest()) ? 'layouts.marketing' : 'layouts.app');
 ?>
 
-<x-dynamic-component 
+<x-dynamic-component
 	:component="$layout"
 >
 
-    
+
     <x-app.container>
         <x-card class="lg:p-10">
+            <x-elements.back-button
+                :href="route('dashboard')"
+            />
+
             <x-app.heading
-                title="Changelog"
-                description="This is your application changelog where users can visit to stay in the loop about your latest updates and improvements."
+                title="{{ trans('circlexo.changelog.title') }}"
+                description="{{trans('circlexo.changelog.description')}}"
             />
 
         <div class="max-w-full mt-8 prose-sm prose dark:prose-invert">
@@ -36,7 +40,7 @@
                             @endif
                         </div>
                     </div>
-                    
+
                 @endforeach
             </div>
         </x-card>

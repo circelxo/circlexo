@@ -29,12 +29,12 @@
             return $form
                 ->schema([
                     \Filament\Forms\Components\TextInput::make('name')
-                        ->label('Name')
+                        ->label(trans('circlexo.settings.profile.name'))
                         ->required()
 						->rules('required|string')
 						->default(auth('accounts')->user()->name),
 					\Filament\Forms\Components\TextInput::make('email')
-                        ->label('Email Address')
+                        ->label(trans('circlexo.settings.profile.email'))
                         ->required()
 						->rules('sometimes|required|email|unique:users,email,' . auth('accounts')->user()->id)
 						->default(auth('accounts')->user()->email),
@@ -59,7 +59,7 @@
 			$this->saveFormFields($state);
 
 			Notification::make()
-                ->title('Successfully saved your profile settings')
+                ->title(trans('circlexo.settings.profile.notification'))
                 ->success()
                 ->send();
 		}
@@ -86,8 +86,8 @@
 <x-layouts.app>
 
     <x-app.settings-layout
-        title="Settings"
-        description="Manage your account avatar, name, email, and more.">
+        title="{{ trans('circlexo.settings.profile.title') }}"
+        description="{{ trans('circlexo.settings.profile.description') }}">
 
 		@volt('settings.profile')
 		<div x-data="{
@@ -175,13 +175,13 @@
 						</div>
 					</div>
 					@error('avatar')
-						<p class="mt-3 text-sm text-red-600">The avatar must be a valid image type.</p>
+						<p class="mt-3 text-sm text-red-600">{{ trans('circlexo.settings.profile.avatar.error') }}</p>
 					@enderror
 					<div class="w-full mt-8">
 						{{ $this->form }}
 					</div>
 					<div class="w-full pt-6 text-right">
-						<x-button type="submit">Save</x-button>
+						<x-button type="submit">{{ trans('circlexo.settings.save') }}</x-button>
 					</div>
 				</div>
 
@@ -192,7 +192,7 @@
 					<div>
 						<div class="mt-3 text-center sm:mt-5">
 							<h3 class="text-lg font-medium leading-6 text-zinc-900" id="modal-headline">
-								Position and resize your photo
+                                {{ trans('circlexo.settings.profile.avatar.crop') }}
 							</h3>
 							<div class="mt-2">
 								<div id="upload-crop-container" class="relative flex items-center justify-center h-56 mt-5">
@@ -208,9 +208,9 @@
 						</div>
 					</div>
 					<div class="mt-5 sm:mt-6">
-						<span class="flex w-full rounded-md shadow-sm">
-							<button @click="window.dispatchEvent(new CustomEvent('close-modal', { detail: { id: 'profile-avatar-crop' }}));" class="inline-flex justify-center w-full px-4 py-2 mr-2 text-base font-medium leading-6 transition duration-150 ease-in-out bg-white border border-transparent rounded-md shadow-sm text-zinc-700 border-zinc-300 hover:text-zinc-500 active:text-zinc-800 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue sm:text-sm sm:leading-5" type="button">Cancel</button>
-							<button @click="window.dispatchEvent(new CustomEvent('close-modal', { detail: { id: 'profile-avatar-crop' }})); applyImageCrop()" class="inline-flex justify-center w-full px-4 py-2 ml-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-wave sm:text-sm sm:leading-5" id="apply-crop" type="button">Apply</button>
+						<span class="flex w-full rounded-md shadow-sm gap-3">
+							<button @click="window.dispatchEvent(new CustomEvent('close-modal', { detail: { id: 'profile-avatar-crop' }}));" class="inline-flex justify-center w-full px-4 py-2 mr-2 text-base font-medium leading-6 transition duration-150 ease-in-out bg-white border border-transparent rounded-md shadow-sm text-zinc-700 border-zinc-300 hover:text-zinc-500 active:text-zinc-800 focus:outline-none focus:border-blue-300 focus:shadow-outline-blue sm:text-sm sm:leading-5" type="button">{{ trans('circlexo.settings.profile.avatar.cancel') }}</button>
+							<button @click="window.dispatchEvent(new CustomEvent('close-modal', { detail: { id: 'profile-avatar-crop' }})); applyImageCrop()" class="inline-flex justify-center w-full px-4 py-2 ml-2 text-base font-medium leading-6 text-white transition duration-150 ease-in-out bg-blue-600 border border-transparent rounded-md shadow-sm hover:bg-blue-500 focus:outline-none focus:border-blue-700 focus:shadow-outline-wave sm:text-sm sm:leading-5" id="apply-crop" type="button">{{ trans('circlexo.settings.profile.avatar.apply') }}</button>
 						</span>
 					</div>
 				</x-filament::modal>

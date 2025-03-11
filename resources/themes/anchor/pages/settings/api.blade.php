@@ -40,7 +40,7 @@
             return $form
                 ->schema([
                     TextInput::make('key')
-                        ->label('Create a new API Key')
+                        ->label(trans('circlexo.settings.api.key'))
                         ->required()
                 ])
                 ->statePath('data');
@@ -54,7 +54,7 @@
             $apiKey = auth()->user()->createApiKey(Str::slug($state['key']));
 
             Notification::make()
-                ->title('Successfully created new API Key')
+                ->title(trans('circlexo.settings.api.notifications'))
                 ->success()
                 ->send();
 
@@ -66,24 +66,25 @@
         public function table(Table $table): Table
         {
             return $table->query(Wave\ApiKey::query()->where('user_id', auth()->user()->id))
+                ->emptyStateHeading(trans('circlexo.settings.api.empty'))
                 ->columns([
-                    TextColumn::make('name'),
-                    TextColumn::make('created_at')->label('Created'),
+                    TextColumn::make('name')->label(trans('circlexo.settings.api.name')),
+                    TextColumn::make('created_at')->label(trans('circlexo.settings.api.created')),
                 ])
                 ->actions([
                     ViewAction::make()
                         ->slideOver()
                         ->modalWidth('md')
                         ->form([
-                            TextInput::make('name'),
-                            TextInput::make('key')
+                            TextInput::make('name')->label(trans('circlexo.settings.api.name')),
+                            TextInput::make('key')->label(trans('circlexo.settings.api.key'))
                             // ...
                         ]),
                     EditAction::make()
                         ->slideOver()
                         ->modalWidth('md')
                         ->form([
-                            TextInput::make('name')
+                            TextInput::make('name')->label(trans('circlexo.settings.api.name'))
                                 ->required()
                                 ->maxLength(255),
                             // ...
@@ -95,8 +96,6 @@
         public function refreshKeys(){
             $this->keys = auth()->user()->apiKeys;
         }
-
-
 	}
 
 ?>
@@ -105,18 +104,18 @@
     @volt('settings.api')
         <div class="relative">
             <x-app.settings-layout
-                title="API Keys"
-                description="Manage your API Keys"
+                title="{{ trans('circlexo.settings.api.title') }}"
+                description="{{ trans('circlexo.settings.api.description') }}"
             >
                 <div class="flex flex-col">
                     <form wire:submit="add" class="w-full max-w-lg">
                         {{ $this->form }}
                         <div class="w-full pt-6 text-right">
-                            <x-button type="submit">Create New Key</x-button>
+                            <x-button type="submit">{{ trans('circlexo.settings.api.create') }}</x-button>
                         </div>
                     </form>
                     <hr class="my-8 border-zinc-200">
-                    <x-elements.label class="block text-sm font-medium leading-5 text-zinc-700">Current API Keys</x-elements.label>
+                    <x-elements.label class="block text-sm font-medium leading-5 text-zinc-700">{{ trans('circlexo.settings.api.current') }}</x-elements.label>
                     <div class="pt-5">
                         {{ $this->table }}
                     </div>

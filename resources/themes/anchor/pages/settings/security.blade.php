@@ -26,19 +26,19 @@
             return $form
                 ->schema([
                     TextInput::make('current_password')
-                        ->label('Current Password')
+                        ->label(trans('circlexo.settings.security.current_password'))
                         ->required()
                         ->currentPassword()
                         ->password()
                         ->revealable(),
                     TextInput::make('password')
-                        ->label('New Password')
+                        ->label(trans('circlexo.settings.security.password'))
                         ->required()
                         ->minLength(4)
                         ->password()
                         ->revealable(),
                     TextInput::make('password_confirmation')
-                        ->label('Confirm New Password')
+                        ->label(trans('circlexo.settings.security.password_confirmation'))
                         ->required()
                         ->password()
                         ->revealable()
@@ -60,7 +60,7 @@
             $this->form->fill();
 
             Notification::make()
-                ->title('Successfully changed password')
+                ->title(trans('circlexo.settings.security.notification'))
                 ->success()
                 ->send();
         }
@@ -73,13 +73,13 @@
     @volt('settings.security')
         <div class="relative">
             <x-app.settings-layout
-                title="Security"
-                description="Update and change your current account password."
+                title="{{ trans('circlexo.settings.security.title') }}"
+                description="{{ trans('circlexo.settings.security.description') }}"
             >
                 <form wire:submit="save" class="w-full max-w-lg">
                     {{ $this->form }}
                     <div class="w-full pt-6 text-right">
-                        <x-button type="submit">Save</x-button>
+                        <x-button type="submit">{{ trans('circlexo.settings.save') }}</x-button>
                     </div>
                 </form>
 
