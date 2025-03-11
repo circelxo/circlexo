@@ -8,7 +8,6 @@ use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
-use Filament\Models\Contracts\FilamentUser;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
