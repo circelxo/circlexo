@@ -28,7 +28,7 @@
                     TextInput::make('current_password')
                         ->label(trans('circlexo.settings.security.current_password'))
                         ->required()
-                        ->currentPassword()
+                        ->rule('current_password:accounts')
                         ->password()
                         ->revealable(),
                     TextInput::make('password')
@@ -53,7 +53,7 @@
             $state = $this->form->getState();
             $this->validate();
 
-            auth()->user()->forceFill([
+            auth('accounts')->user()->forceFill([
                 'password' => bcrypt($state['password'])
             ])->save();
 

@@ -49,12 +49,15 @@
         "mallardduck/blade-boxicons": "^2.4",
         "psr/simple-cache": "^3.0",
         "ralphjsmit/livewire-urls": "^1.5",
+        "stechstudio/filament-impersonate": "^3.15",
         "stripe/stripe-php": "^16.6",
         "thedevdojo/wave": "0.0.1",
         "tomatophp/filament-accounts": "^2.3",
+        "tomatophp/filament-alerts": "^2.2",
         "tomatophp/filament-language-switcher": "^1.0",
         "tomatophp/filament-menus": "^1.0",
         "tomatophp/filament-settings-hub": "^2.0",
+        "tomatophp/filament-users": "^2.0",
         "tymon/jwt-auth": "^2.2"
     },
     "require-dev": {

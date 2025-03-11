@@ -8,6 +8,7 @@ use Filament\FontProviders\GoogleFontProvider;
 use Filament\Http\Middleware\Authenticate;
 use Filament\Http\Middleware\DisableBladeIconComponents;
 use Filament\Http\Middleware\DispatchServingFilamentEvent;
+use Filament\Models\Contracts\FilamentUser;
 use Filament\Pages;
 use Filament\Panel;
 use Filament\PanelProvider;
@@ -21,10 +22,13 @@ use Illuminate\Routing\Middleware\SubstituteBindings;
 use Illuminate\Session\Middleware\AuthenticateSession;
 use Illuminate\Session\Middleware\StartSession;
 use Illuminate\View\Middleware\ShareErrorsFromSession;
+use TomatoPHP\FilamentAccounts\FilamentAccountsPlugin;
+use TomatoPHP\FilamentAlerts\FilamentAlertsPlugin;
 use TomatoPHP\FilamentLanguageSwitcher\FilamentLanguageSwitcherPlugin;
 use TomatoPHP\FilamentMenus\FilamentMenusPlugin;
 use TomatoPHP\FilamentSettingsHub\FilamentSettingsHubPlugin;
 use TomatoPHP\FilamentTypes\FilamentTypesPlugin;
+use TomatoPHP\FilamentUsers\FilamentUsersPlugin;
 use Wave\Widgets;
 
 class AdminPanelProvider extends PanelProvider
@@ -91,9 +95,24 @@ class AdminPanelProvider extends PanelProvider
 
         $panel->plugin(FilamentShieldPlugin::make());
         $panel->plugin(FilamentLanguageSwitcherPlugin::make());
+        $panel->plugin(FilamentUsersPlugin::make());
         $panel->plugin(FilamentTypesPlugin::make());
         $panel->plugin(FilamentSettingsHubPlugin::make());
         $panel->plugin(FilamentMenusPlugin::make());
+        $panel->plugin(
+            FilamentAccountsPlugin::make()
+                ->useTypes()
+                ->useAvatar()
+                ->canLogin()
+                ->canBlocked()
+                ->useNotifications()
+                ->useExport()
+                ->useImport()
+        );
+        $panel->plugin(
+            FilamentAlertsPlugin::make()
+                ->useSettingsHub()
+        );
 
         return $panel;
     }

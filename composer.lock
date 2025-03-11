@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "c8e8b5ca6e7c82b8df82a38e2facb67d",
+    "content-hash": "5b09be13ee0c7660ee9ed077c66737ae",
     "packages": [
         {
             "name": "anourvalar/eloquent-serialize",
@@ -8489,6 +8489,48 @@
             "time": "2025-01-13T13:04:43+00:00"
         },
         {
+            "name": "stechstudio/filament-impersonate",
+            "version": "3.15",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/stechstudio/filament-impersonate.git",
+                "reference": "1214583c9637bf941cc0ea0f260884c0fce65fe3"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/stechstudio/filament-impersonate/zipball/1214583c9637bf941cc0ea0f260884c0fce65fe3",
+                "reference": "1214583c9637bf941cc0ea0f260884c0fce65fe3",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0",
+                "lab404/laravel-impersonate": "^1.7"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "STS\\FilamentImpersonate\\FilamentImpersonateServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "STS\\FilamentImpersonate\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "A Filament package to impersonate your users.",
+            "support": {
+                "issues": "https://github.com/stechstudio/filament-impersonate/issues",
+                "source": "https://github.com/stechstudio/filament-impersonate/tree/3.15"
+            },
+            "time": "2024-12-03T17:20:46+00:00"
+        },
+        {
             "name": "stripe/stripe-php",
             "version": "v16.6.0",
             "source": {
@@ -11152,6 +11194,88 @@
             "time": "2024-11-04T10:52:46+00:00"
         },
         {
+            "name": "tomatophp/filament-alerts",
+            "version": "2.2.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/filament-alerts.git",
+                "reference": "ef7403c317a4e29c0486bffeb90845c27d462875"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/filament-alerts/zipball/ef7403c317a4e29c0486bffeb90845c27d462875",
+                "reference": "ef7403c317a4e29c0486bffeb90845c27d462875",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.0.0",
+                "filament/notifications": "^3.0.0",
+                "filament/spatie-laravel-media-library-plugin": "^3.2",
+                "filament/spatie-laravel-translatable-plugin": "^3.2",
+                "php": "^8.1|^8.2",
+                "tomatophp/console-helpers": "^1.1",
+                "tomatophp/filament-icons": "^1.0",
+                "tomatophp/filament-settings-hub": "^2.0"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.18",
+                "livewire/livewire": "^2.10|^3.0",
+                "nunomaduro/larastan": "^2.9",
+                "orchestra/testbench": "^9.5",
+                "pestphp/pest": "^2.36",
+                "pestphp/pest-plugin-laravel": "^2.4",
+                "pestphp/pest-plugin-livewire": "^2.1",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan-deprecation-rules": "^1.2",
+                "phpstan/phpstan-phpunit": "^1.4"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentAlerts\\FilamentAlertsServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentAlerts\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Send notification to users using notification templates and multi notification channels, it's support Filament Native Notification Service with macro, and a full integration to FCM service worker notifications",
+            "keywords": [
+                "alets",
+                "database",
+                "email",
+                "filament",
+                "laravel",
+                "notifications",
+                "php",
+                "tall stack"
+            ],
+            "support": {
+                "issues": "https://github.com/tomatophp/filament-alerts/issues",
+                "source": "https://github.com/tomatophp/filament-alerts/tree/v2.2.2"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/3x1io",
+                    "type": "github"
+                }
+            ],
+            "time": "2024-11-25T03:32:05+00:00"
+        },
+        {
             "name": "tomatophp/filament-icons",
             "version": "v1.1.4",
             "source": {
@@ -11577,6 +11701,84 @@
                 }
             ],
             "time": "2025-02-26T13:01:15+00:00"
+        },
+        {
+            "name": "tomatophp/filament-users",
+            "version": "2.0.17",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/tomatophp/filament-users.git",
+                "reference": "eba7e26b7a3adc65252e9ff270ab974674343127"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/tomatophp/filament-users/zipball/eba7e26b7a3adc65252e9ff270ab974674343127",
+                "reference": "eba7e26b7a3adc65252e9ff270ab974674343127",
+                "shasum": ""
+            },
+            "require": {
+                "filament/filament": "^3.3",
+                "php": "^8.2|^8.3|^8.4",
+                "tomatophp/console-helpers": "^1.1"
+            },
+            "require-dev": {
+                "laravel/pint": "^1.21",
+                "livewire/livewire": "^2.10|^3.0",
+                "nunomaduro/larastan": "^3.1",
+                "orchestra/testbench": "^10.0",
+                "pestphp/pest": "^3.7",
+                "pestphp/pest-plugin-laravel": "^3.1",
+                "pestphp/pest-plugin-livewire": "^3.0",
+                "phpstan/extension-installer": "^1.4",
+                "phpstan/phpstan-deprecation-rules": "^2.0",
+                "phpstan/phpstan-phpunit": "^2.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "TomatoPHP\\FilamentUsers\\FilamentUsersServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "TomatoPHP\\FilamentUsers\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Fady Mondy",
+                    "email": "info@3x1.io"
+                }
+            ],
+            "description": "Manage your users with a highly customizable user resource for FilamentPHP with integration of filament-shield and filament-impersonate",
+            "keywords": [
+                "User management",
+                "Users",
+                "filament-impersonate",
+                "filament-shield",
+                "filamentphp",
+                "laravel",
+                "php",
+                "user CRUD",
+                "user resource"
+            ],
+            "support": {
+                "issues": "https://github.com/tomatophp/filament-users/issues",
+                "source": "https://github.com/tomatophp/filament-users/tree/v2.0.17"
+            },
+            "funding": [
+                {
+                    "url": "https://github.com/3x1io",
+                    "type": "github"
+                }
+            ],
+            "time": "2025-02-26T02:40:00+00:00"
         },
         {
             "name": "tymon/jwt-auth",

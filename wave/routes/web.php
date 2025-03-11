@@ -3,10 +3,6 @@
 use Illuminate\Support\Facades\Route;
 
 Route::middleware('web')->group(function () {
-    Route::impersonate();
-
-    // Documentation routes
-    Route::view('docs/{page?}', 'docs::index')->where('page', '(.*)');
 
     // Additional Auth Routes
     Route::get('logout', '\Wave\Http\Controllers\LogoutController@logout')->name('wave.logout');
