@@ -80,23 +80,23 @@ class AppServiceProvider extends ServiceProvider
                         ->register([
                             Type::make('https://docs.3x1.io/circlexo')
                                 ->name([
-                                    "ar" => "طريقة الاستخدام",
-                                    "en" => "Docs",
+                                    'ar' => 'طريقة الاستخدام',
+                                    'en' => 'Docs',
                                 ])
                                 ->icon('phosphor-book-bookmark-duotone'),
                             Type::make('https://github.com/orgs/circlexo/discussions')
                                 ->name([
-                                    "ar" => "الأسئلة الشائعة",
-                                    "en" => "Questions",
+                                    'ar' => 'الأسئلة الشائعة',
+                                    'en' => 'Questions',
                                 ])
                                 ->icon('phosphor-chat-duotone'),
                             Type::make('https://github.com/orgs/circlexo/discussions')
                                 ->name([
-                                    "ar" => "الأسئلة الشائعة",
-                                    "en" => "Questions",
+                                    'ar' => 'الأسئلة الشائعة',
+                                    'en' => 'Questions',
                                 ])
                                 ->icon('phosphor-chat-duotone'),
-                        ])
+                        ]),
                 ]),
         ]);
     }
