@@ -3,28 +3,28 @@
 return [
     'back' => 'Return Back Home',
     'dashboard' => [
-        "title" => "Dashboard",
-        "description" => "Welcome to your dashboard. Here you can manage your account, view your activity, and access all the features of our application.",
-        "link" => "Read More",
-        "search" => "Searching for something?",
-        "toggle" => [
-            "dark" => "Dark Mode",
-            "light" => "Light Mode",
+        'title' => 'Dashboard',
+        'description' => 'Welcome to your dashboard. Here you can manage your account, view your activity, and access all the features of our application.',
+        'link' => 'Read More',
+        'search' => 'Searching for something?',
+        'toggle' => [
+            'dark' => 'Dark Mode',
+            'light' => 'Light Mode',
         ],
-        "user-menu" => [
-            "notifications" => "Notifications",
-            "settings" => "Settings",
-            "upgrade" => "Upgrade Plan",
-            "admin" => "View Admin",
-            "logout" => "Logout",
-        ]
+        'user-menu' => [
+            'notifications' => 'Notifications',
+            'settings' => 'Settings',
+            'upgrade' => 'Upgrade Plan',
+            'admin' => 'View Admin',
+            'logout' => 'Logout',
+        ],
     ],
     'notifications' => [
         'title' => 'Notifications',
         'description' => 'You have no notifications.',
         'empty' => 'No notifications found.',
     ],
-    "changelog" => [
+    'changelog' => [
         'title' => 'Changelog',
         'description' => 'This is your application changelog where users can visit to stay in the loop about your latest updates and improvements.',
         'empty' => 'No changelog entries found.',
@@ -49,38 +49,38 @@ return [
                 'crop' => 'Position and resize your photo',
                 'apply' => 'Apply',
                 'cancel' => 'Cancel',
-                'error' => "The avatar must be a valid image type."
+                'error' => 'The avatar must be a valid image type.',
             ],
-            "notification" => 'Successfully saved your profile settings'
+            'notification' => 'Successfully saved your profile settings',
         ],
         'security' => [
-            "title" => 'Security',
+            'title' => 'Security',
             'description' => 'Manage your security settings.',
             'current_password' => 'Current Password',
             'password' => 'New Password',
             'password_confirmation' => 'Confirm Password',
-            "notification" => 'Successfully changed password'
+            'notification' => 'Successfully changed password',
         ],
         'subscription' => [
-            "title" => 'Subscriptions',
-            "description" => 'Manage your subscriptions.',
-            "no_subscriptions" => 'You are logged in as an admin and have full access. Authenticate with a different user and visit this page to see the subscription checkout process.',
-            "current_subscription" => 'You are currently subscribed to the',
-            "plan" => 'Plan',
-            "notification" => 'Successfully updated your subscription',
-            'payment_by' => "Billing is securely managed via",
-            "payment_provider" => "Payment Platform",
-            "subscribe" => "Subscribe to this Plan",
-            "welcome" => [
-                "title" => 'Successfully Purchased 🎉',
-                "description" => "Thanks for upgrading to a subscription plan.",
-                "body" => "This is your customer's successful purchase welcome screen. After a user upgrades their account they will be redirected to this page after a successful transaction.",
-            ]
+            'title' => 'Subscriptions',
+            'description' => 'Manage your subscriptions.',
+            'no_subscriptions' => 'You are logged in as an admin and have full access. Authenticate with a different user and visit this page to see the subscription checkout process.',
+            'current_subscription' => 'You are currently subscribed to the',
+            'plan' => 'Plan',
+            'notification' => 'Successfully updated your subscription',
+            'payment_by' => 'Billing is securely managed via',
+            'payment_provider' => 'Payment Platform',
+            'subscribe' => 'Subscribe to this Plan',
+            'welcome' => [
+                'title' => 'Successfully Purchased 🎉',
+                'description' => 'Thanks for upgrading to a subscription plan.',
+                'body' => "This is your customer's successful purchase welcome screen. After a user upgrades their account they will be redirected to this page after a successful transaction.",
+            ],
         ],
         'billing' => 'Billing',
         'api' => [
-            "title" => 'API Keys',
-            "description" => 'Manage your API keys.',
+            'title' => 'API Keys',
+            'description' => 'Manage your API keys.',
             'key' => 'Create a new API Key',
             'create' => 'Create New Key',
             'current' => 'Current API Keys',
@@ -90,13 +90,13 @@ return [
             'notification' => 'Successfully created API key',
         ],
         'invoices' => [
-            "title" => 'Invoices',
-            "description" => 'Manage your invoices.',
+            'title' => 'Invoices',
+            'description' => 'Manage your invoices.',
             'empty' => 'No invoices found.',
-            "empty_description" => "You do not have any past invoices. When you subscribe to a plan you'll see your past invoices here.",
-            "date" => 'Date',
-            "price" => 'Date of Invoice',
-            "PDF Download" => 'Status'
+            'empty_description' => "You do not have any past invoices. When you subscribe to a plan you'll see your past invoices here.",
+            'date' => 'Date',
+            'price' => 'Date of Invoice',
+            'PDF Download' => 'Status',
         ],
     ],
     'marketing' => [
