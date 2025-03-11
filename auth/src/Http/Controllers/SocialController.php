@@ -5,7 +5,6 @@ namespace Devdojo\Auth\Http\Controllers;
 use Devdojo\Auth\Models\SocialProvider;
 use Devdojo\Auth\Models\SocialProviderUser;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Config;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Request;
@@ -77,8 +76,8 @@ class SocialController
         }
 
         $user = config('filament-accounts.model')::query()
-            ->where('email', 'LIKE', '%'.$socialiteUser->getEmail().'%')
-            ->orWhere('username', 'LIKE','%'.$socialiteUser->getEmail().'%')->first();
+            ->where('email', 'LIKE', '%' . $socialiteUser->getEmail() . '%')
+            ->orWhere('username', 'LIKE', '%' . $socialiteUser->getEmail() . '%')->first();
 
         if ($user) {
             $existingProvider = $user->socialProviders()->first();
