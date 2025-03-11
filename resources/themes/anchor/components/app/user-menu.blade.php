@@ -42,7 +42,7 @@
                 @notsubscriber
                 <x-app.sidebar-link href="/settings/subscription" icon="phosphor-sparkle-duotone">{{ trans('circlexo.dashboard.user-menu.upgrade') }}</x-app.sidebar-link>
                 @endnotsubscriber
-                @if(auth('web')->user()->isAdmin())
+                @if(auth('web')->user()?->isAdmin())
                     <x-app.sidebar-link :hideUntilGroupHover="false" :ajax="false" href="/admin" icon="phosphor-crown-duotone" active="false">{{ trans('circlexo.dashboard.user-menu.admin') }}</x-app.sidebar-link>
                 @endif
                 <form method="POST" action="{{ route('logout') }}" class="w-full">
@@ -52,9 +52,6 @@
                         <span>{{ trans('circlexo.dashboard.user-menu.logout') }}</span>
                     </button>
                 </form>
-                @impersonating
-                <x-app.sidebar-link href="{{ route('impersonate.leave') }}" icon="phosphor-user-circle-duotone" active="false">Leave impersonation</x-app.sidebar-link>
-                @endImpersonating
             </div>
         </div>
     </div>

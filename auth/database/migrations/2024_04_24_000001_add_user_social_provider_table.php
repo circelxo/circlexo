@@ -12,7 +12,7 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('social_provider_user', function (Blueprint $table) {
-            $table->foreignId('user_id')->constrained()->onDelete('cascade');
+            $table->foreignId('account_id')->constrained()->onDelete('cascade');
             $table->string('provider_slug'); // maps to providers slug in the devdojo.auth.providers
 
             $table->string('provider_user_id');
@@ -27,7 +27,7 @@ return new class extends Migration
             $table->timestamp('token_expires_at')->nullable();
             $table->timestamps();
 
-            $table->primary(['user_id', 'provider_slug']);
+            $table->primary(['account_id', 'provider_slug']);
         });
     }
 

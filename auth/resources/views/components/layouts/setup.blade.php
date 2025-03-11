@@ -6,7 +6,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
 
         <title>Authentication Setup</title>
-        @vite(['auth/resources/css/auth.css', 'auth/resources/css/auth.js'])
+        @vite(['auth/resources/css/auth.css', 'auth/resources/js/auth.js'])
 
         <script src= "https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/codemirror/6.65.7/codemirror.min.css">
@@ -55,6 +55,24 @@
                 })
             })
         </script>
+
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+        {{ filament()->getFontHtml() }}
+
+
+        <style>
+            :root {
+                --font-family: '{!! filament()->getFontFamily() !!}';
+                --sidebar-width: {{ filament()->getSidebarWidth() }};
+                --collapsed-sidebar-width: {{ filament()->getCollapsedSidebarWidth() }};
+                --default-theme-mode: {{ filament()->getDefaultThemeMode()->value }};
+            }
+            body {
+                font-family: var(--font-family);
+            }
+        </style>
+
 
     </head>
 <body

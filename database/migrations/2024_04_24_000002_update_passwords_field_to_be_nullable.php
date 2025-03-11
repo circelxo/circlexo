@@ -12,7 +12,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('accounts', function (Blueprint $table) {
             $table->string('password')->nullable()->change();
             $table->string('name')->nullable()->change();
         });
@@ -24,11 +24,11 @@ return new class extends Migration
     public function down()
     {
         // Update records with NULL values to avoid constraint violations
-        DB::table('users')->whereNull('name')->update(['name' => '']);
-        DB::table('users')->whereNull('password')->update(['password' => '']);
+        DB::table('accounts')->whereNull('name')->update(['name' => '']);
+        DB::table('accounts')->whereNull('password')->update(['password' => '']);
 
         // Change the table structure
-        Schema::table('users', function (Blueprint $table) {
+        Schema::table('accounts', function (Blueprint $table) {
             $table->string('name')->nullable(false)->change();
             $table->string('password')->nullable(false)->change();
         });

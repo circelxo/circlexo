@@ -34,7 +34,7 @@ class SocialController
 
     private function getProviderCredentialsWithOverrides($provider)
     {
-        $socialProvider = SocialProvider::where('slug', $provider)->first();
+        $socialProvider = SocialProvider::query()->where('slug', $provider)->first();
 
         switch ($provider) {
             case 'facebook':
@@ -58,7 +58,7 @@ class SocialController
                 return $providerUser; // This is an error redirect
             }
 
-            Auth::login($providerUser->user);
+            auth('accounts')->login($providerUser->user);
 
             return redirect()->to(config('devdojo.auth.settings.redirect_after_auth'));
         } catch (\Exception $e) {
@@ -68,7 +68,7 @@ class SocialController
 
     private function findOrCreateProviderUser($socialiteUser, $driver)
     {
-        $providerUser = SocialProviderUser::where('provider_slug', $driver)
+        $providerUser = SocialProviderUser::query()->where('provider_slug', $driver)
             ->where('provider_user_id', $socialiteUser->getId())
             ->first();
 
@@ -76,7 +76,9 @@ class SocialController
             return $providerUser;
         }
 
-        $user = app(config('auth.providers.users.model'))->where('email', $socialiteUser->getEmail())->first();
+        $user = config('filament-accounts.model')::query()
+            ->where('email', 'LIKE', '%'.$socialiteUser->getEmail().'%')
+            ->orWhere('username', 'LIKE','%'.$socialiteUser->getEmail().'%')->first();
 
         if ($user) {
             $existingProvider = $user->socialProviders()->first();
@@ -97,11 +99,17 @@ class SocialController
 
     private function createUser($socialiteUser)
     {
-        return app(config('auth.providers.users.model'))->create([
+        $account = app(config('filament-accounts.model'))->create([
             'name' => $socialiteUser->getName(),
             'email' => $socialiteUser->getEmail(),
-            'email_verified_at' => now(),
+            'username' => $socialiteUser->getEmail(),
+            'is_active' => 1,
         ]);
+
+        $account->addMediaFromUrl($socialiteUser->getAvatar())
+            ->toMediaCollection('avatar');
+
+        return $account;
     }
 
     private function createSocialProviderUser($user, $socialiteUser, $driver)

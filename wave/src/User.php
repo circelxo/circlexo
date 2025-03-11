@@ -10,14 +10,12 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
-use Lab404\Impersonate\Models\Impersonate;
 use Spatie\Permission\Traits\HasRoles;
 use Tymon\JWTAuth\Contracts\JWTSubject;
 
 class User extends AuthUser implements FilamentUser, HasAvatar, JWTSubject
 {
     use HasRoles;
-    use Impersonate;
     use Notifiable;
 
     /**

@@ -2,6 +2,7 @@
 
 namespace Devdojo\Auth\Models;
 
+use App\Models\Account;
 use App\Models\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -11,7 +12,7 @@ class SocialProviderUser extends Model
     protected $table = 'social_provider_user';
 
     // Prevents the "returning id" default behaviour
-    protected $primaryKey = 'user_id';
+    protected $primaryKey = 'account_id';
 
     // Prevents the auto-increment default behaviour
     public $incrementing = false;
@@ -21,7 +22,7 @@ class SocialProviderUser extends Model
 
     // The attributes that are mass assignable.
     protected $fillable = [
-        'user_id',
+        'account_id',
         'provider_slug',
         'provider_user_id',
         'nickname',
@@ -45,7 +46,7 @@ class SocialProviderUser extends Model
      */
     public function user(): BelongsTo
     {
-        return $this->belongsTo(User::class, 'user_id');
+        return $this->belongsTo(Account::class, 'account_id');
     }
 
     /**
